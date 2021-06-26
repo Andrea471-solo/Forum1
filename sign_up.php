@@ -1,3 +1,7 @@
+<?php
+	require 'connect_db.php';
+	require 'headfront.php';
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -147,7 +151,7 @@ function test_input($data) {
     <div class="grid-list">
       <div class="grid-img">
         <svg class="ques" height="10" width="10">
-          <img src="/Forum/Forum.git/rsc/question.png" alt="Q" height="26" width="26">
+          <img src="/Forum1/rsc/question.jpg" alt="Q" height="26" width="26">
         </svg>
       </div>
       <span class="span-about">Ask no questions -and hear no lies</span>
@@ -155,7 +159,7 @@ function test_input($data) {
     <div class="grid-list">
       <div class="grid-img">
         <svg class="ques" height="10" width="10">
-          <img src="/Forum/Forum.git/rsc/vote1.png" alt="arrow" height="26" width="26">
+          <img src="/Forum1/rsc/vote1.jpg" alt="arrow" height="26" width="26">
         </svg>
       </div>
       <span class="span-about">Vote with your feet</span>
@@ -163,7 +167,7 @@ function test_input($data) {
     <div class="grid-list">
       <div class="grid-img">
         <svg class="ques" height="10" width="10">
-          <img src="/Forum/Forum.git/rsc/level.png" alt="arrow" height="26" width="26">
+          <img src="/Forum1/rsc/level.jpg" alt="arrow" height="26" width="26">
         </svg>
       </div>
       <span class="span-about">Step up your game -and level up</span>
@@ -171,7 +175,7 @@ function test_input($data) {
     <div class="grid-list">
       <div class="grid-img">
         <svg class="ques" height="10" width="10">
-          <img src="/Forum/Forum.git/rsc/com.png" alt="arrow" height="26" width="26">
+          <img src="/Forum1/rsc/com.jpg" alt="arrow" height="26" width="26">
         </svg>
       </div>
       <span class="span-about">Become part of a community</span>
