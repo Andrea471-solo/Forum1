@@ -50,7 +50,7 @@
   </head>
   <body>
 <?php
-if(isset($_SESSION['logged_in']))
+if(isset(!$_SESSION['logged_in']))
 {
     //the user is not signed in
     echo 'Sorry, you have to be <a href="/Forum1/login.php">signed in</a> to post something.';
