@@ -1,7 +1,6 @@
 <?php
 	session_start();
 	require 'connect_db.php';
-	session_start();
 ?>
 <!DOCTYPE html>
 
