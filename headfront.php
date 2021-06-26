@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require 'connect_db.php';
+	session_start();
 ?>
 <!DOCTYPE html>
 
@@ -59,6 +60,13 @@
 			.topnav-right.a{
 				float: right;
 
+			}
+			.topnav-left {
+				width: 20%;
+				float: left;
+			}
+			.topnav-left.a{
+				float: left;
 			}
 			.topnav .search-container {
 
@@ -141,8 +149,13 @@
 		 ?>
 
     <div class="topnav">
+
+				<div class="topnav-left">
 					<a href="homepage.php" class="fa fa-home active">Home</a>
-      		<a href="#news">News</a>
+					<form action="category.php" method="post">
+						 <button class="l-but" type="submit" name="cat-submit">Create a Category</button>
+				 </form>
+			 </div>
 				<div class="topnav-right">
 					<div class="search-container">
 		    		<form action="/action_page.php">
