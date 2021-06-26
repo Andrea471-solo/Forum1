@@ -209,15 +209,6 @@
 				}
 				 ?>
 
-				 <?php
-				 if ($_GET['login']=="success") {
-					?>
-					document.getElementById('alert').style.display='block';
-					document.getElementById('alert').innerHTML='You have successfully logged in. You can now <a href="homepage.php">browse our categories</a> if you want.';
-				 <?php
-				 }
-					?>
-
 		</script>
 
 </body>
