@@ -1,3 +1,7 @@
+<?php
+	require 'connect_db.php';
+	require 'headfront.php';
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -6,10 +10,14 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
    <script type="text/javascript">
-    $(window).on('load', function() {
-        $('#myModal').modal('show');
-    });
+
+
+     $(window).on('load', function() {
+         $('#myModal').modal('show');
+     });
+
    </script>
   <style media="screen">
 
@@ -23,6 +31,7 @@
       margin-left: auto;
       margin-right: auto;
       margin-top: 5%;
+      margin-bottom: 10%;
       padding: 20px;
     }
     input[type=text]{
@@ -30,12 +39,31 @@
     }
     textarea{
       width: 100%;
+      margin-bottom: 10px;
+    }
+    .img-container{
+      border: 1px solid black;
+      margin-top: 1px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
     }
 
   </style>
   </head>
   <body>
-
+<?php
+if(isset($_SESSION['logged_in']))
+{
+    //the user is not signed in
+    echo 'Sorry, you have to be <a href="/Forum1/login.php">signed in</a> to post something.';
+}
+else {
+?>
   <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
@@ -62,7 +90,7 @@
 </div>
 
 <div class="form-container">
-  <form class="" action="index.html" method="post">
+  <form class="thread-text" action="threads.php" method="post">
     <div class="post-title">
       <div class="grid-title">
         <div class="title-top">
@@ -70,7 +98,7 @@
           <p>Be specific and ask any question your heart (and our policy) desires</p>
         </div>
         <div class="title-input">
-          <input type="text" name="title" maxlength="300" placeholder="e.g. What is the length of an average sized unicorn's horn?">
+          <input type="text" id="title1" name="title1" maxlength="300" placeholder="e.g. What is the length of an average sized unicorn's horn?">
         </div>
       </div>
     </div>
@@ -81,19 +109,22 @@
           <p>Include all the necessary content to help answer your question</p>
         </div>
         <div class="body-input">
-           <textarea id="subject" name="subject"
-           placeholder="Write something.." style="height:200px"></textarea>
+           <textarea id="subject1" name="subject1"
+           placeholder="Please don't leave me blank.." style="height:200px"></textarea>
         </div>
       </div>
     </div>
-    <button type="submit" name="submit-but">Post</button>
-  </form>
+
+    <button type="submit" name="submit-but">Attach an image</button>
+  </form><br><br>
+  </div>
 </div>
-
 <?php
-  echo title;
+}
+?>
 
 
- ?>
+
+
   </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require 'connect_db.php';
 ?>
 <!DOCTYPE html>
@@ -19,6 +20,7 @@
   			background-color: #f3f3f3;
   			overflow: hidden;
 				width: 100%;
+
 			}
 
 			/* Style the links inside the navigation bar */
@@ -49,12 +51,14 @@
 
 			/* Right-aligned section inside the top navigation */
 			.topnav-right {
-				width: 40%;
+				width: 60%;
   			float: right;
+
 
 			}
 			.topnav-right.a{
 				float: right;
+
 			}
 			.topnav .search-container {
 
@@ -76,7 +80,7 @@
   			margin-right: 16px;
   			background: #FF4500;
   			font-size: 20px;
-				border-radius: 25px;
+				border-radius: 10%;
   			border: 2px solid #FF4500;
   			cursor: pointer;
 			}
@@ -84,6 +88,7 @@
   		background: #ddd;
 			}
 			.l-but{
+				width: auto;
 				float: right;
 				color: #666;
 				text-align: center;
@@ -93,7 +98,7 @@
 				text-decoration: none;
 				font-size: 20px;
 				background-color: #f3f3f3;
-				margin: 8px 0;
+				margin: 8px 2px;
 
 
 			}
@@ -147,12 +152,17 @@
 						  </span>
 		    		</form>
 	  			</div>
-					<form action="sign_up.php" method="post">
-						 <button class="l-but" type="submit" name="sign-submit" <i class="fa fa-user"></i> Sign up</button>
-				 </form>
-				 	<form id="logform" action="login.php" method="post">
-					 		<button id="logbut" class="l-but" type="submit" name="login-submit" <i class="fa fa-user"></i> Login</button>
-				  </form>
+						<form action="sign_up.php" method="post">
+							 <button class="l-but" type="submit" name="sign-submit" <i class="fa fa-user"></i> Sign up</button>
+					  </form>
+					 	<form id="logform" action="login.php" method="post">
+						 		<button id="logbut" class="l-but" type="submit" name="login-submit" <i class="fa fa-user"></i> Login</button>
+					  </form>
+						<form action="threads1.php" method="post">
+							 <button class="l-but" type="submit" name="post-submit" <i class="fa fa-user"></i>Create Thread</button>
+					  </form>
+
+
 					<?php
 					if (isset($_SESSION['user_ID'])) {
 					 ?>
