@@ -8,6 +8,7 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  <link href="https://fonts.googleapis.com/css?family=Ultra|Work+Sans:400,500" rel="stylesheet">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
@@ -22,11 +23,14 @@
   <style media="screen">
 
     body{
-      background-color: #fef4ea;
+      background-color: white;
+			font-family: 'Work Sans', sans-serif;
+      font-weight: 400;
     }
     .form-container{
       width: 50%;
       border-radius: 5px;
+			border: 3px solid #ff4500;
       background-color: #fefefe;
       margin-left: auto;
       margin-right: auto;
@@ -52,10 +56,31 @@
     height: 400px;
     object-fit: contain;
     }
+
 		.dropdown{
 			font-size: 20px;
 
 		}
+
+		h1{
+			text-align: center;
+			margin-top: 20%;
+		}
+		.spans{
+			width: 100%;
+			text-align: center;
+		}
+		.btn{
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			background-color:  #FF4500;
+
+		}
+		.parag{
+			color: #FF4500;
+		}
+
 
   </style>
   </head>
@@ -63,8 +88,35 @@
 <?php
 if(!isset($_SESSION['logged_in']))
 {
-    //the user is not signed in
-    echo 'Sorry, you have to be <a href="/Forum1/login.php">signed in</a> to post something.';
+	?>
+	<script type="text/javascript">
+		$(window).on('load', function() {
+				$('#myModal').modal('show');
+		});
+	</script>
+	<div class="container">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Join the BetaBus Community</h4>
+						<p class="parag">Join BetaBus to start earning reputation and unlocking new privileges like voting and commenting.</p>
+						<br>
+					 <button type="button" class="btn" data-dismiss="modal" onclick="document.location='sign_up.php'">Sign up</button>
+						<br>
+						<br>
+						<span class="spans">Already have an account? <a href="/Forum1/login.php">Log in</a></span>
+						<br>
+					</div>
+				</div>
+
+			</div>
+	</div>
+</div>
+<?php
 }
 else {
 ?>

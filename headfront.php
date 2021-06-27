@@ -14,6 +14,8 @@
 		@import url(https://fonts.googleapis.com/css?family=Vibur);
       body {margin:0;}
 
+
+
 			.topnav {
 
   			position: relative;
@@ -51,7 +53,7 @@
 
 			/* Right-aligned section inside the top navigation */
 			.topnav-right {
-				width: 60%;
+				width: 70%;
   			float: right;
 
 
@@ -61,7 +63,7 @@
 
 			}
 			.topnav-left {
-				width: 20%;
+				width: 22%;
 				float: left;
 			}
 			.topnav-left.a{
@@ -74,7 +76,7 @@
 
 			}
 			.topnav input[type=text] {
-				width: 70%;
+				width: 65%;
 				padding: 6px;
   			margin-top: 8px;
   			font-size: 20px;
@@ -174,7 +176,6 @@
 							 <button class="l-but" type="submit" name="post-submit" <i class="fa fa-user"></i>Create Thread</button>
 					  </form>
 
-
 					<?php
 					if (isset($_SESSION['user_ID'])) {
 					 ?>
@@ -184,7 +185,15 @@
 					 </script>
 					<?php
 			   	}
-					 ?>
+					else {
+						?>
+					<script>
+					document.getElementById('logbut').innerHTML=" Login";
+					 document.getElementById('logform').action=" login.php";
+					</script>
+
+			<?php	} ?>
+
 
 				</div>
     </div>

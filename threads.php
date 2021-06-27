@@ -15,11 +15,12 @@
   <style media="screen">
 
     body{
-      background-color: #fef4ea;
+      background-color: white;
     }
     .form-container{
       width: 50%;
       border-radius: 5px;
+			border: 3px solid #ff4500;
       background-color: #fefefe;
       margin-left: auto;
       margin-right: auto;
