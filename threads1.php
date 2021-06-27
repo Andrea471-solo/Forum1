@@ -52,6 +52,10 @@
     height: 400px;
     object-fit: contain;
     }
+		.dropdown{
+			font-size: 20px;
+
+		}
 
   </style>
   </head>
@@ -91,6 +95,21 @@ else {
 
 <div class="form-container">
   <form class="thread-text" action="threads.php" method="post">
+		<div class="dropdown">
+			<label for="cars">Choose a category:</label><br>
+			<select name="cat" id="cat">
+				<?php
+				$sql = mysqli_query($conn, "SELECT cat_id, cat_name FROM category");
+				while ($row = $sql->fetch_assoc()){
+					unset($id, $name);
+          $id = $row['cat_id'];
+          $name = $row['cat_name'];
+					echo '<option value="'.$id.'">' . $name . '</option>';
+				}
+				?>
+	  </select>
+		</div>
+
     <div class="post-title">
       <div class="grid-title">
         <div class="title-top">

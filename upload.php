@@ -41,28 +41,39 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
   $target_file = $target_dir . hash_file('sha256', $_FILES["img"]["tmp_name"]);
+  $img_name= hash_file('sha256', $_FILES["img"]["tmp_name"]);
   if (move_uploaded_file($_FILES["img"]["tmp_name"], $target_file)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["img"]["name"])). " has been uploaded.";
     $_SESSION['uploaded'] = true;
+
   } else {
     echo "Sorry, there was an error uploading your file.";
   }
 }
 
 
-if (isset($_POST['upload_but'])) {
+if (isset($_FILES['img'])) {
   require 'connect_db.php';
 
-  $img_name= hash_file('sha256', $_FILES["img"]["tmp_name"]);
+
   $image_by= $_SESSION['user_ID'];
   $img_size= $_FILES["img"]["size"];
   $image_in= 1;
   $image_thread= $_SESSION['THREAD_ID'];
-  if (isset($_POST['usname']) && isset($_POST['psw'])) {
-				$q= "select * from user where user_name='".addslashes($_POST['usname'])."'";
-      //  header("Location:headfront.php?match");
-				$res= mysqli_query($conn, $q);
-				if ($res) {
+
+  $sql = "INSERT INTO image (image_by, image_name, image_size, image_in, image_thread)
+  VALUES ('$image_by', '$img_name', $img_size,4, $image_thread)";
+
+  if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+    header("Location:homepage.php");
+
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+  $conn->close();
+  }
 
 
  ?>

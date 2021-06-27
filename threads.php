@@ -50,11 +50,11 @@
   </head>
   <body>
 <?php
-		if(!isset($_SESSION['logged_in']))
-		{
-		    //the user is not signed in
-		    echo 'Sorry, you have to be <a href="login.php">signed in</a> to post something.';
-		}
+if($_SESSION['logged_in'] == false)
+{
+    //the user is not signed in
+    echo 'Sorry, you have to be <a href="/Forum1/login.php">signed in</a> to post something.';
+}
 else {
 ?>
 
@@ -84,9 +84,7 @@ else {
         </div>
       </div>
     </div>
-
-    <button type="submit" name="submit-but">Post</button>
-  </form><br><br>
+  </form><br>
   <form action="upload.php" method="post" enctype="multipart/form-data">
     Attach an image:
     <input type="file" id="img" name="img" onchange="readURL(this);" accept="image/*"><br>
@@ -95,7 +93,7 @@ else {
     <script type="text/javascript">
       posting=false;
     </script>
-  <button type="submit" id="upload-but" name="upload-but">Upload Image</button>
+  <button type="submit" id="upload-but" name="upload-but">Post</button>
 
   </form>
   </div>
@@ -122,14 +120,27 @@ function readURL(input) {
 
 <?php
 if(isset($_POST['submit-but'])){
+
+$cat_id= $_POST['cat'];
+$thread_creator= $_SESSION['user_ID'];
+
 $sql = "INSERT INTO thread (thread_name, thread_descript, thread_date, thread_status, thread_creator, thread_cat)
-VALUES ('" . addslashes($_POST['title1']) . "', '" . addslashes($_POST['subject1']) . "', unix_timestamp(),'active', 1 , 1 )";
+VALUES ('" . addslashes($_POST['title1']) . "', '" . addslashes($_POST['subject1']) . "', NOW(),'active', $thread_creator , $cat_id )";
 
 if ($conn->query($sql) === TRUE) {
   echo "New record created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
+$q= "select * from thread where thread_name='".addslashes($_POST['title1'])."'";
+$res= mysqli_query($conn, $q);
+if ($res) {
+		if (mysqli_num_rows($res)==1) {
+			$row= mysqli_fetch_assoc($res);
+
+				$_SESSION['THREAD_ID']   = $row['THREAD_ID'];
+			}
+		}
 
 $conn->close();
 }
