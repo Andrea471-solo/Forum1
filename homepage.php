@@ -13,6 +13,9 @@
 
       <style>
 
+			a:hover {
+				color: red;
+			}
       body {
       font-family: 'Work Sans', sans-serif;
       font-weight: 400;
@@ -27,11 +30,7 @@
           font-size:30px;
           color: #FF4500;
       }
-      h2{
-
-        text-decoration: underline;
-        text-decoration-color: #FFD900;
-      }
+  
 			h3{
 				text-align: center;
 				font-weight: 200;
@@ -50,28 +49,24 @@
 			}
 
 			table,th,td {
-				border: 1px solid black;
 				border-collapse: collapse;
 			  font-weight: bold;
-
+        width: 70%;
 			}
+
 			th,td {
 			text-align: left;
 			padding: 10px;
 
 			}
+			tr{
+				border-top: solid 1px #f00;
+			  border-bottom: solid 1px #f00;
+			}
 			th{
 			background-color: #FF4500;
 			color: black ;
-
 			}
-			tr:nth-child(odd){
-			background-color:	#ffdead;
-			}
-			tr:nth-child(even){
-			background-color:#ffbf00;
-			}
-
 
 
       </style>
@@ -86,7 +81,6 @@
 		<h4 id="war" class="war">The categories could not be displayed, try again later!</h4>
 
 		<?php
-				if (isset($_SESSION['user_ID'])) {
 					$q= "select * from category";
 					$res =mysqli_query($conn, $q);
 					if (!$res)
@@ -105,7 +99,7 @@
 
 										  }
 									else {
-												echo '<table border="1" class="center">
+												echo '<table class="center">
 								        <tr>
 									      <th>Category</th>
 									      <th>Last thread</th>
@@ -128,7 +122,7 @@
 						}
 							mysqli_close($conn);
 
-				} ?>
+?>
 
 
   </body>

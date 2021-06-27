@@ -111,11 +111,23 @@
 				color: #ff4500;
 
 			}
+			h2{
+				text-align: center;
+				margin-top: 20%;
+			}
 
 
 </style>
 </head>
 <body>
+	<?php
+if(isset($_SESSION['logged_in']))
+	{
+	    //the user is not signed in
+	    echo '<h2>Looks like you are already logged in :)</h2>';
+	}
+	else {
+?>
 
 <?php
 // define variables and set to empty values
@@ -257,6 +269,8 @@
 
 
 </script>
+
+<?php } ?>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['login-submit'])) {
   require 'connect_db.php';
-  //session_start();
+  session_start();
   $username= $_POST['usname'];
   $password=$_POST['psw'];
   if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true)
@@ -26,6 +26,7 @@ if (isset($_POST['login-submit'])) {
                       session_start();
                       $_SESSION['user_ID']   = $row['USER_ID'];
       					      $_SESSION['user_Name'] = $row['USER_NAME'];
+                      $_SESSION['user_Level'] = $row['USER_LEVEL'];
                       $_SESSION['logged_in'] = true;
                       $session_id= hash('sha256',time().$row['USER_ID']);
                       $q="insert into session (user_id, session_id, session_time) values (".$row['USER_ID'].", '$session_id', unix_timestamp())";
