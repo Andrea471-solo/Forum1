@@ -1,6 +1,9 @@
 <?php
+
+	//session_start();
 	require 'connect_db.php';
 	require 'headfront.php';
+	//include 'login_verify.php';
 ?>
 <!DOCTYPE html>
 
@@ -151,7 +154,7 @@
 
     <form class="mod-content animate" action="login_verify.php" method="post">
       <div class="imgcontainer">
-        <img src="/Forum_1/rsc/sign_in.png" alt="Sign-in icon" class="avatar"></img>
+        <img src="/Forum1/rsc/sign_in.jpg" alt="Sign-in icon" class="avatar"></img>
       </div>
 
       <div class="container">
@@ -164,7 +167,7 @@
         </div>
 
         <button id="btn"class="login-but"type="submit" name="login-submit" data-toggle="tooltip" title="At the touch of a button">Login</button>
-        <span id="alert"class="alert">Invalid Credentials</span>
+        <span id="alert"class="alert">User does not exist. Sign up first to start posting!</span>
 
       </div>
 
@@ -193,9 +196,18 @@
 			 <?php
 			 if ($_GET['error']=="incorrectpsw") {?>
 			 document.getElementById('alert').style.display='block';
-			 document.getElementById('alert').innerHTML='Wrong password';
+			 document.getElementById('alert').innerHTML='Sorry you entered the wrong password';
 			 <?php
 		   }?>
+
+				<?php
+				if ($_GET['error']=="already") {
+				 ?>
+				 document.getElementById('alert').style.display='block';
+				 document.getElementById('alert').innerHTML='Looks like you are already signed in. You can <a href="signout.php">sign out</a> if you want.';
+				<?php
+				}
+				 ?>
 
 		</script>
 

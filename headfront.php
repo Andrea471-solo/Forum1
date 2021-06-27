@@ -60,6 +60,13 @@
 				float: right;
 
 			}
+			.topnav-left {
+				width: 20%;
+				float: left;
+			}
+			.topnav-left.a{
+				float: left;
+			}
 			.topnav .search-container {
 
 		   	float: left;
@@ -132,7 +139,7 @@
 							}
 
 					$row= mysqli_fetch_assoc($res);
-					if ($row['sessionAge']>3600) {
+					if ($row['sessionAge']>500) {
 						session_destroy();
 					}
 
@@ -141,8 +148,13 @@
 		 ?>
 
     <div class="topnav">
+
+				<div class="topnav-left">
 					<a href="homepage.php" class="fa fa-home active">Home</a>
-      		<a href="#news">News</a>
+					<form action="category.php" method="post">
+						 <button class="l-but" type="submit" name="cat-submit">Create a Category</button>
+				 </form>
+			 </div>
 				<div class="topnav-right">
 					<div class="search-container">
 		    		<form action="/action_page.php">
