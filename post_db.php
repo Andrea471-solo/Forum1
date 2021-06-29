@@ -10,6 +10,7 @@ if (isset($_POST['post-submit'])) {
       		   	$q="insert into posts (POST_MESSAGE, POST_DATE,POST_THREAD,POST_CREATOR) values ('".addslashes($postmessage)."', NOW(),$threadid ,$userid)";
       				$res= mysqli_query($conn, $q);
       				if ($res) {
+
                     header("Location:thread_view.php?err=yess&id=$threadid");
                     exit();
 
