@@ -61,8 +61,8 @@ if (isset($_FILES['img'])) {
   $image_in= 1;
   $image_thread= $_SESSION['THREAD_ID'];
 
-  $sql = "INSERT INTO image (image_by, image_name, image_size, image_in, image_thread)
-  VALUES ('$image_by', '$img_name', $img_size,4, $image_thread)";
+  $sql = "INSERT INTO image (image_by, image_name, image_size, image_thread)
+  VALUES ('$image_by', '$img_name', $img_size, $image_thread)";
 
   if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

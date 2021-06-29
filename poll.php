@@ -11,7 +11,9 @@ $poll_content= $vote;
 $poll_creator= $_SESSION['user_ID'];
 $poll_post= 8;
 
-$sql = "INSERT INTO poll (poll_content, poll_date, poll_creator, poll_post)
+if(mysqli_query($conn, "select poll_content from poll where poll_content like '%up%' and poll_post = '$poll_post';")==)
+
+$sql = "UPDATE poll (poll_content, poll_date, poll_creator, poll_post)
 VALUES ('$poll_content', NOW(), $poll_creator, $poll_post)";
 
 if ($conn->query($sql) === TRUE) {
