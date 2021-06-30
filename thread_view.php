@@ -26,6 +26,7 @@
           font-family: 'Ultra', serif;
           font-weight: 400;
           font-size:30px;
+					shadow: 10px 10px 5px grey;
 
       }
 			h3{
@@ -38,7 +39,7 @@
 				text-align: center;
 				font-weight: 200;
 				font-size:20px;
-				color: #FF4500;
+				color: grey;
 			}
 			.war{
 				display: none;
@@ -65,7 +66,7 @@
 			table,th,td {
 				border-collapse: collapse;
 			  font-weight: bold;
-        width: 70%;
+        width: 90%;
 			}
 			th,td {
 			text-align: left;
@@ -73,10 +74,13 @@
 
 			}
 			th{
-			background-color: #1E90FF;
-			color: white	 ;
+			font-size: 30px;
+			color: black;
 			}
-			tr:nth-child(even){background-color: #f2f2f2}
+			tr{
+				border-top: 1px solid lightgrey;
+				border-bottom: 1px solid lightgrey;
+			}
 
 			.form-container{
 				width: 70%;
@@ -94,6 +98,31 @@
 			}
 			textarea{
 				width: 100%;
+			}
+			.shadow{
+				position: -webkit-sticky;
+				position: sticky;
+				top: 0;
+				background-color: white;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				border-radius: 15px;
+        border: 2px solid lightgrey;
+			}
+			.post{
+				background-color: white;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+				border: 2px solid white;
+				padding: 10px;
+				font: Arial;
+				font-size: 15px;
+				font-weight: normal;
+				line-height: 200%;
+			}
+			.post1{
+				background-color: #9fbfdf;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+				padding: 15px;
 			}
 
       </style>
@@ -130,7 +159,7 @@
 									 else {
                                while($row = mysqli_fetch_assoc($res))
                                 {
-                                  echo '<h2>Posts on ′' . $row['THREAD_NAME'] . '′:</h2>';
+                                  echo '<div class="shadow"><h2>' . $row['THREAD_NAME'] . '	</h2></div>';
 																	echo '<br>';
 																	echo '<h4>Asked: ' . $row['THREAD_DATE'] . '<br>Status: ' . $row['THREAD_STATUS'] . '</h4>';
                                 }
@@ -163,8 +192,7 @@
 
                                                   echo '<table class="Table-cont">
                                                   <tr>
-                                                  <th>Post</th>
-                                                  <th>Posted by</th>
+                                                  <th> All Post</th>
                                                   </tr>';
 
                                                   while($row1 = mysqli_fetch_assoc($res1))
@@ -172,13 +200,13 @@
 
 																										 echo '<tr>';
                                                      echo '<td>';
-																										 echo $row1['post_message'];
+																										 echo '<div class="post">'. $row1['post_message']. '</div>';
                                                      echo '</td>';
-                                                     echo '<td>';
+                                                     echo '<td> <div class="post1">';
 																										 echo $row1['user_name'];
 																										 echo '<br>';
                                                      echo $row1['post_date'];
-                                                     echo '</td>';
+                                                     echo '</div></td>';
                                                      echo '</tr>';
 
                                                    }

@@ -22,11 +22,6 @@
    </script>
   <style media="screen">
 
-    body{
-      background-color: white;
-			font-family: 'Work Sans', sans-serif;
-      font-weight: 400;
-    }
     .form-container{
       width: 50%;
       border-radius: 5px;

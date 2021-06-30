@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
-      form {
+      form.mod-content animate{
         border: 3px solid #f1f1f1;
       }
 
