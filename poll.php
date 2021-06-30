@@ -1,22 +1,45 @@
 <?php
 session_start();
 
-if(isset($_REQUEST['vote'])){
+if(isset($_GET['vote'])){
 
-$vote = $_REQUEST['vote'];
+$vote = $_GET['vote'];
+$poll_post= $_GET['id'];
+$threadid=$_SESSION['thread_id'];
 
 require 'connect_db.php';
-
-$poll_content= $vote;
+if($vote==1){
+$poll_content= 'upvote';
+}
+else {
+$poll_content= 'downvote';
+}
 $poll_creator= $_SESSION['user_ID'];
-$poll_post= 8;
 
-if(mysqli_query($conn, "select poll_content from poll where poll_content like '%up%' and poll_post = '$poll_post';")==)
+$contains = mysqli_query($conn, "select count(*) c from poll where poll_creator = '$poll_creator' and poll_post = '$poll_post';");
+$r = mysqli_fetch_assoc($contains);
+$resul = mysqli_query($conn, "select poll_content from poll where poll_creator = '$poll_creator' and poll_post = '$poll_post';");
+$result = mysqli_fetch_assoc($resul);
 
-$sql = "UPDATE poll (poll_content, poll_date, poll_creator, poll_post)
-VALUES ('$poll_content', NOW(), $poll_creator, $poll_post)";
+if($r['c']== '0'){
+  $sql = "INSERT into poll (poll_content, poll_date, poll_creator, poll_post)
+  VALUES ('$poll_content', NOW(), $poll_creator, $poll_post);";
+  $conn->query($sql);
 
-if ($conn->query($sql) === TRUE) {
+}
+if($poll_content=='upvote'&&$result['poll_content'] == 'downvote'){
+
+  $sql = "UPDATE poll set poll_content = 'upvote' where poll_creator = '$poll_creator' and poll_post = '$poll_post';";
+  $conn->query($sql);
+}
+else if($poll_content=='downvote'&&$result['poll_content'] == 'upvote'){
+
+  $sql = "UPDATE poll set poll_content = 'downvote' where poll_creator = '$poll_creator' and poll_post = '$poll_post';";
+  $conn->query($sql);
+}
+header("Location:thread_view.php?id=$threadid&postid=$poll_post");
+
+
   $q = "select count(*) total_up from poll where poll_content like '%up%' and poll_post = '$poll_post';";
   $query = "select count(*) total_down from poll where poll_content like '%down%' and poll_post = '$poll_post';";
   $res= mysqli_query($conn, $q);
@@ -26,7 +49,8 @@ if ($conn->query($sql) === TRUE) {
   		if (mysqli_num_rows($res)==1&&mysqli_num_rows($res2)==1) {
   			$row= mysqli_fetch_assoc($res);
         $row2= mysqli_fetch_assoc($res2);
-  				echo ($row['total_up']-$row2['total_down']);
+        $diff = ($row['total_up']-$row2['total_down']);
+
   			}
   		}
 } else {
@@ -35,6 +59,6 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 
-}
+
 
  ?>

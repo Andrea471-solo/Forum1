@@ -141,7 +141,7 @@
 							}
 
 					$row= mysqli_fetch_assoc($res);
-					if ($row['sessionAge']>500) {
+					if ($row['sessionAge']>3600) {
 						session_destroy();
 					}
 

@@ -95,6 +95,59 @@
 			textarea{
 				width: 100%;
 			}
+			.triangle-up {
+			width: 0;
+			height: 0;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-bottom: 30px solid #555;
+			}
+			.triangle-up:hover {
+			width: 0;
+			height: 0;
+
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-bottom: 30px solid #ff4500;
+			}
+			button[type="submit"]{
+
+			background-color: white;
+			border: none;
+			cursor: pointer;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: auto;
+			margin-bottom: auto;
+			}
+			.triangle-down {
+			width: 0;
+			height: 0;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-top: 30px solid #555;
+			}
+			.triangle-down:hover {
+			width: 0;
+			height: 0;
+
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-top: 30px solid #ff4500;
+			}
+			.voting-container{
+			  display: grid;
+			  grid-template-columns: auto auto auto;
+			  text-align: center;
+			  height: 70px;
+			  width: 210px;
+
+			}
+			.grid-item{
+			width: 70px;
+			vertical-align: middle;
+
+			}
 
       </style>
 
@@ -167,8 +220,25 @@
                                                   <th>Post</th>
                                                   </tr>';
 
+
+
+
+
                                                   while($row1 = mysqli_fetch_assoc($res1))
                                                   {
+																										$posid = $row1['post_id'];
+																										$q = "select count(*) total_up from poll where poll_content like '%up%' and poll_post = '$posid';";
+																										$query = "select count(*) total_down from poll where poll_content like '%down%' and poll_post = '$posid';";
+																										$res= mysqli_query($conn, $q);
+																										$res2= mysqli_query($conn, $query);
+																										if ($res&&$res2) {
+																											 if (mysqli_num_rows($res)==1&&mysqli_num_rows($res2)==1) {
+																												 $row= mysqli_fetch_assoc($res);
+																												 $row2= mysqli_fetch_assoc($res2);
+																												 $diff = ($row['total_up']-$row2['total_down']);
+
+																												 }
+																											 }
 
 																										 echo '<tr>';
                                                      echo '<td>';
@@ -179,7 +249,31 @@
                                                      echo '<td>';
                                                      echo $row1['post_message'];
                                                      echo '</td>';
+																										 echo '<td>';
+																										 ?>
+																										 <div id="poll">
+																										   <div class="voting-container">
+																												 <?php
+																										     echo '<a class="triangle-up" href="poll.php?id=' . $row1['post_id'] . '&&vote=1"></a>';
+																												 ?>
+																										     <div class="grid-item">
+																										       <div  class="vote-count">
+																														 <?php
+
+																															  echo $diff;
+
+																														 ?>
+																										       </div>
+																										     </div>
+																												 <?php
+																										     echo '<a class="triangle-down" href="poll.php?id=' . $row1['post_id'] . '&&vote=0"></a>';
+																												 ?>
+																										   </div>
+																										 </div>
+																										 <?php
+																										 echo '</td>';
                                                      echo '</tr>';
+
 
                                                    }
 
