@@ -19,7 +19,7 @@
 			.topnav {
 
   			position: relative;
-  			background-color: #f3f3f3;
+  			background-color: white;
   			overflow: hidden;
 				width: 100%;
 
@@ -29,7 +29,6 @@
 			.topnav a {
 
   			float: left;
-  			color: #666;
   			text-align: center;
   			padding: 14px 16px;
 				border-radius: 25px;
@@ -37,6 +36,7 @@
   			text-decoration: none;
   			font-size: 20px;
 				margin: 8px 0;
+				border: 1px solid black;
 			}
 
 			/* Change the color of links on hover */
@@ -53,7 +53,7 @@
 
 			/* Right-aligned section inside the top navigation */
 			.topnav-right {
-				width: 70%;
+				width: 100%;
   			float: right;
 
 
@@ -61,22 +61,31 @@
 			.topnav-right.a{
 				float: right;
 
+
 			}
 			.topnav-left {
-				width: 22%;
-				float: left;
+				display: grid;
+				width: 100%;
+			  grid-template-columns: 100px 210px 100px auto;
+			  padding: 10px;
+
+
 			}
 			.topnav-left.a{
 				float: left;
+
 			}
 			.topnav .search-container {
 
-		   	float: left;
+				float: left;
+				width: 60%;
 				margin-top: 5px;
+				margin-left: 50px;
+
 
 			}
 			.topnav input[type=text] {
-				width: 65%;
+				width: 70%;
 				padding: 6px;
   			margin-top: 8px;
   			font-size: 20px;
@@ -116,6 +125,24 @@
 				color: black;
 				cursor: pointer;
 			}
+			.imgcontainer1{
+				text-align: center;
+        position: relative;
+				margin-left: 20px;
+				width: 100%;
+				height: 70px;
+
+			}
+			img.avatar1 {
+        width: 100%;
+        height: 100%;
+        border-radius: 10%;
+      }
+			.cats{
+
+				width: 100%;
+				height: 70px;
+			}
     </style>
 
   </head>
@@ -152,50 +179,58 @@
     <div class="topnav">
 
 				<div class="topnav-left">
+					<div>
 					<a href="homepage.php" class="fa fa-home active">Home</a>
+			 	  </div>
+					<div class="cats">
 					<form action="category.php" method="post">
 						 <button class="l-but" type="submit" name="cat-submit">Create a Category</button>
 				 </form>
+			   </div>
+				 <div class="imgcontainer1">
+						<img src="/Forum1/rsc/busicon.jpeg" alt="Sign-in icon" class="avatar1"></img>
+					</div>
+					<div class="topnav-right">
+						<div class="search-container">
+			    		<form action="search.php" method="post">
+			      		<input type="text" placeholder="Search.." name="search">
+								<span>
+			      		<button type="submit" name="search-submit"><i class="fa fa-search"></i></button>
+							  </span>
+			    		</form>
+		  			</div>
+
+							<form action="sign_up.php" method="post">
+								 <button class="l-but" type="submit" name="sign-submit" <i class="fa fa-user"></i> Sign up</button>
+						  </form>
+						 	<form id="logform" action="login.php" method="post">
+							 		<button id="logbut" class="l-but" type="submit" name="login-submit" <i class="fa fa-user"></i> Login</button>
+						  </form>
+							<form action="threads1.php" method="post">
+								 <button class="l-but" type="submit" name="post-submit" <i class="fa fa-user"></i>Create Thread</button>
+						  </form>
+
+						<?php
+						if (isset($_SESSION['user_ID'])) {
+						 ?>
+						 <script>
+						 document.getElementById('logbut').innerHTML=" Logout";
+						  document.getElementById('logform').action=" logout.php";
+						 </script>
+						<?php
+				   	}
+						else {
+							?>
+						<script>
+						document.getElementById('logbut').innerHTML=" Login";
+						 document.getElementById('logform').action=" login.php";
+						</script>
+
+				<?php	} ?>
+
+
+					</div>
 			 </div>
-				<div class="topnav-right">
-					<div class="search-container">
-		    		<form action="/action_page.php">
-		      		<input type="text" placeholder="Search.." name="search">
-							<span>
-		      		<button type="submit"><i class="fa fa-search"></i></button>
-						  </span>
-		    		</form>
-	  			</div>
-						<form action="sign_up.php" method="post">
-							 <button class="l-but" type="submit" name="sign-submit" <i class="fa fa-user"></i> Sign up</button>
-					  </form>
-					 	<form id="logform" action="login.php" method="post">
-						 		<button id="logbut" class="l-but" type="submit" name="login-submit" <i class="fa fa-user"></i> Login</button>
-					  </form>
-						<form action="threads1.php" method="post">
-							 <button class="l-but" type="submit" name="post-submit" <i class="fa fa-user"></i>Create Thread</button>
-					  </form>
-
-					<?php
-					if (isset($_SESSION['user_ID'])) {
-					 ?>
-					 <script>
-					 document.getElementById('logbut').innerHTML=" Logout";
-					  document.getElementById('logform').action=" logout.php";
-					 </script>
-					<?php
-			   	}
-					else {
-						?>
-					<script>
-					document.getElementById('logbut').innerHTML=" Login";
-					 document.getElementById('logform').action=" login.php";
-					</script>
-
-			<?php	} ?>
-
-
-				</div>
     </div>
 					<?php
 

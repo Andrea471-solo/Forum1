@@ -1,5 +1,7 @@
 <?php
-
+  if (isset($_POST['search-submit'])) {
+  $search= $_POST['search'];
+}
 	require "headfront.php";
 	require 'connect_db.php';
 ?>
@@ -14,6 +16,11 @@
  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <script>
+        if ( window.history.replaceState ) {
+         window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
       <style>
 
 			a:hover {
@@ -149,36 +156,14 @@
 		<?php
 	}
 	else {
-					$q= "select * from category where CAT_ID='".addslashes($_GET['id'])."'";
-					$res =mysqli_query($conn, $q);
-					if (!$res)
-							{
-								echo "<script>
-									    document.getElementById('war').style.display='block';
-								      </script>";
-							}
-					else {
-									if (mysqli_num_rows($res) == 0)
-											{
-											echo "	<script>
-												      document.getElementById('war').style.display='block';
-												      document.getElementById('war').innerHTML='The category does not exist!';
-												      </script>";
 
-										  }
-									 else {
-                               while($row = mysqli_fetch_assoc($res))
-                                {
-                                  echo '<div class="shadow"><h2>Threads in the ′' . $row['CAT_NAME'] . '′ category:</h2></div>';
-                                }
-
-                                $q= "select * from thread where THREAD_CAT='".addslashes($_GET['id'])."'";
+                                $q= "select * from thread where THREAD_name like '%".addslashes($_POST['search'])."%'";
                       					$res1 =mysqli_query($conn, $q);
                       					if (!$res1)
                       							{
                       								echo "<script>
                       									    document.getElementById('war').style.display='block';
-                                            document.getElementById('war').innerHTML='The threads could not be displayed, please try again later.!';
+                                            document.getElementById('war').innerHTML='Error, please try again later.!';
                       								      </script>";
                       							}
                                   else {
@@ -186,7 +171,7 @@
                         									{
                                             echo "<script>
                                                   document.getElementById('war').style.display='block';
-                                                  document.getElementById('war').innerHTML='There are no threads in this category yet!';
+                                                  document.getElementById('war').innerHTML='Sorry no threads could be found!';
                                                   </script>";
                                           }
                                           else {
@@ -212,11 +197,9 @@
 
 								                        }
 
-						              }
+	 }
 							mysqli_close($conn);
 
-		                }
-                }
 ?>
 
 
