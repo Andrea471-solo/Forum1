@@ -10,8 +10,12 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
-
+   <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+	 <script>
+			if ( window.history.replaceState ) {
+			 window.history.replaceState( null, null, window.location.href );
+			}
+	</script>
   <style media="screen">
 
     body{
@@ -54,7 +58,7 @@
 if($_SESSION['logged_in'] == false)
 {
     //the user is not signed in
-    echo 'Sorry, you have to be <a href="/Forum1/login.php">signed in</a> to post something.';
+    echo 'Sorry, you have to be <a href="/Forum1/login.php">logged in</a> to post something.';
 }
 else {
 ?>

@@ -73,8 +73,8 @@
 
 			}
 			th{
-			background-color: #FF4500;
-			color: black ;
+			background-color: #1E90FF;
+			color: white	 ;
 			}
 			tr:nth-child(even){background-color: #f2f2f2}
 
@@ -185,7 +185,7 @@
                                 {
                                   echo '<h2>Posts on ′' . $row['THREAD_NAME'] . '′:</h2>';
 																	echo '<br>';
-																	echo '<h4>Asked: ' . $row['THREAD_DATE'] . ' Status: ' . $row['THREAD_STATUS'] . '</h4>';
+																	echo '<h4>Asked: ' . $row['THREAD_DATE'] . '<br>Status: ' . $row['THREAD_STATUS'] . '</h4>';
                                 }
 
                                 $q= "select posts.post_id,
@@ -216,8 +216,8 @@
 
                                                   echo '<table class="Table-cont">
                                                   <tr>
-                                                  <th>Posted by</th>
                                                   <th>Post</th>
+                                                  <th>Posted by</th>
                                                   </tr>';
 
 
@@ -242,12 +242,12 @@
 
 																										 echo '<tr>';
                                                      echo '<td>';
-                                                     echo $row1['user_name'];
-                                                     echo '<br>';
-                                                     echo $row1['post_date'];
+																										 echo $row1['post_message'];
                                                      echo '</td>';
                                                      echo '<td>';
-                                                     echo $row1['post_message'];
+																										 echo $row1['user_name'];
+																										 echo '<br>';
+                                                     echo $row1['post_date'];
                                                      echo '</td>';
 																										 echo '<td>';
 																										 ?>

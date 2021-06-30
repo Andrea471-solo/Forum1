@@ -13,7 +13,7 @@
  		<link href="https://fonts.googleapis.com/css?family=Ultra|Work+Sans:400,500" rel="stylesheet">
  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- 	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+  	<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
       <style>
 
 			a:hover {
@@ -61,13 +61,10 @@
 
 			}
 			tr { border: none; }
-			td,th {
-			  border-right: solid 1px #f00;
-			  border-left: solid 1px #f00;
-			}
+
 			th{
-			background-color: #FF4500;
-			color: black ;
+			background-color: #1E90FF;
+			color: white ;
 			}
 			tr:nth-child(even){background-color: #f2f2f2}
 
@@ -183,7 +180,7 @@
                                                   {
                                                      echo '<tr>';
                                                      echo '<td>';
-                                                     echo '<h3><a href="thread_view.php?id=' . $row['THREAD_ID'] . '">' .$row['THREAD_NAME']. '</a></h3>';
+                                                     echo '<h4><a href="thread_view.php?id=' . $row['THREAD_ID'] . '">' .$row['THREAD_NAME']. '</a></h4>' . $row['THREAD_DESCRIPT'];
                                                      echo '</td>';
                                                      echo '<td>';
                                                      echo date('d-m-Y', strtotime($row['THREAD_DATE']));

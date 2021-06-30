@@ -12,6 +12,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+	 <script>
+			 if ( window.history.replaceState ) {
+			  window.history.replaceState( null, null, window.location.href );
+			 }
+	 </script>
 
 <style>
 		body{
@@ -155,9 +160,6 @@
 						document.getElementById('war').innerHTML='Successfully created a category.<br>You can now <a href="homepage.php">view</a> it and start posting! :)';
 
 						<?php } ?>
-
-
-
 				</script>
 				<?php
 				}

@@ -30,7 +30,7 @@
           font-size:30px;
           color: #FF4500;
       }
-  
+
 			h3{
 				text-align: center;
 				font-weight: 200;
@@ -59,14 +59,13 @@
 			padding: 10px;
 
 			}
-			tr{
-				border-top: solid 1px #f00;
-			  border-bottom: solid 1px #f00;
-			}
+			tr { border: none; }
+
 			th{
-			background-color: #FF4500;
-			color: black ;
+			background-color: #1E90FF;
+			color: white ;
 			}
+			tr:nth-child(even){background-color: #f2f2f2}
 
 
       </style>
@@ -109,7 +108,7 @@
 								        {
 								           echo '<tr>';
 								           echo '<td>';
-								           echo '<h3><a href="cat_view.php?id=' . $row['CAT_ID'] . '">' .$row['CAT_NAME']. '</a></h3>' .$row['CAT_SUBJECT'];
+								           echo '<h4><a href="cat_view.php?id=' . $row['CAT_ID'] . '">' .$row['CAT_NAME']. '</a></h4>' .$row['CAT_SUBJECT'];
 								           echo '</td>';
 								           echo '<td>';
 								           echo '<a href="thread.php?id=">Thread subject</a>';
