@@ -191,6 +191,20 @@
 	    echo '<h1>Sorry, you have to be <a href="/Forum1/login.php">logged in</a> to view the threads.</h1>';
 	}
 	else {
+
+					$query2 = "select image_name from image where image_thread = '".addslashes($_GET['id'])."';";
+
+					$res4= mysqli_query($conn, $query2);
+					if ($res4) {
+						 if (mysqli_num_rows($res4)==1) {
+
+							 $row4= mysqli_fetch_assoc($res4);
+
+
+
+							 }
+						 }
+
 					$q= "select * from thread where THREAD_ID='".addslashes($_GET['id'])."'";
 					$res =mysqli_query($conn, $q);
 					if (!$res)
@@ -211,9 +225,15 @@
 									 else {
                                while($row = mysqli_fetch_assoc($res))
                                 {
+
                                   echo '<div class="shadow"><h2>' . $row['THREAD_NAME'] . '	</h2></div>';
+																	if (mysqli_num_rows($res4)==1) {
+																	echo '<h4><a href="uploads/'.$row4['image_name'].'">Attachment</a></h4>';
+																	}
 																	echo '<br>';
 																	echo '<h4>Asked: ' . $row['THREAD_DATE'] . '<br>Status: ' . $row['THREAD_STATUS'] . '</h4>';
+
+
                                 }
 
                                 $q= "select posts.post_id,
