@@ -184,6 +184,29 @@
   <body>
      <h4 id="war" class="war">The category could not be displayed, try again later!</h4>
 
+     <?php
+     if (isset($_POST['post-submit'])) {
+       require 'connect_db.php';
+       //session_start();
+       $postmessage=$_POST['subject'];
+       $threadid=$_SESSION['thread_id'];
+       $userid=$_SESSION['user_ID'];
+
+       if (isset($_POST['subject'])) {
+                  $q="insert into posts (POST_MESSAGE, POST_DATE,POST_THREAD,POST_CREATOR) values ('".addslashes($postmessage)."', NOW(),$threadid ,$userid)";
+                  $res= mysqli_query($conn, $q);
+
+                }
+
+                $q2=mysqli_query($conn,"select post_id from posts where post_date = (select max(post_date) from posts);");
+                $r = mysqli_fetch_assoc($q2);
+                $_SESSION['POST_ID'] = $r['post_id'];
+
+           }
+
+
+      ?>
+
 	<?php
   if(!isset($_SESSION['logged_in']))
 	{
@@ -191,20 +214,6 @@
 	    echo '<h1>Sorry, you have to be <a href="/Forum1/login.php">logged in</a> to view the threads.</h1>';
 	}
 	else {
-
-					$query2 = "select image_name from image where image_thread = '".addslashes($_GET['id'])."';";
-
-					$res4= mysqli_query($conn, $query2);
-					if ($res4) {
-						 if (mysqli_num_rows($res4)==1) {
-
-							 $row4= mysqli_fetch_assoc($res4);
-
-
-
-							 }
-						 }
-
 					$q= "select * from thread where THREAD_ID='".addslashes($_GET['id'])."'";
 					$res =mysqli_query($conn, $q);
 					if (!$res)
@@ -225,15 +234,9 @@
 									 else {
                                while($row = mysqli_fetch_assoc($res))
                                 {
-
                                   echo '<div class="shadow"><h2>' . $row['THREAD_NAME'] . '	</h2></div>';
-																	if (mysqli_num_rows($res4)==1) {
-																	echo '<h4><a href="uploads/'.$row4['image_name'].'">Attachment</a></h4>';
-																	}
 																	echo '<br>';
 																	echo '<h4>Asked: ' . $row['THREAD_DATE'] . '<br>Status: ' . $row['THREAD_STATUS'] . '</h4>';
-
-
                                 }
 
                                 $q= "select posts.post_id,
@@ -287,22 +290,9 @@
 																												 }
 																											 }
 
-	 																										$query1 = "select upload_name, mimetype from upload where upload_post = '$posid';";
-
-	 																										$res3= mysqli_query($conn, $query1);
-	 																										if ($res3) {
-	 																											 if (mysqli_num_rows($res3)==1) {
-	 																												 $row3= mysqli_fetch_assoc($res3);
-
-
-
-	 																												 }
-	 																											 }
-
 																										 echo '<tr>';
                                                      echo '<td>';
-																										 echo '<div class="post">'. $row1['post_message']. '</div><br>';
-																										 echo '<a href="uploads/'.$row3['upload_name'].'">Attachment</a>';
+																										 echo '<div class="post">'. $row1['post_message']. '</div>';
                                                      echo '</td>';
                                                      echo '<td> <div class="post1">';
 																										 echo $row1['user_name'];
@@ -351,9 +341,7 @@
 																													 else {
 																													 ?>
 																														 <div class="form-container">
-																															 <?php
-																															 echo ' <form class="" action="thread_view2.php?id=' . $_SESSION['thread_id'] . ' " method="post">';
-																															  ?>
+																														 <form class=""  method="post">
 																															 <div class="post-content">
 																																 <div class="grid-title">
 																																	 <div class="title-mid">
@@ -362,15 +350,28 @@
 																																	 </div>
 																																	 <div class="body-input">
 																																			<textarea id="subject" name="subject"
-																																			placeholder="Write something.." style="height:200px"></textarea>
+																														          style="height:200px"><?php echo $_POST['subject']; ?> </textarea>
 																																	 </div>
 																																 </div>
 																															 </div>
 																															 <span id="war" class="war">Sorry, could not post a reply :(</span>
 																															 <br>
-																															 <button type="submit" name="post-submit">Attach image</button>
+
 																														 </form>
+                                                             <?php
+                                                             echo '<form method="post" action="upload2.php?id=' . $_GET['id'] . '" enctype="multipart/form-data">';
+                                                              ?>
+
+                                                              <div>
+                                                                <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+                                                                <input type="file" id="image" name="image" accept="image/*">
+                                                              </div>
+                                                              <div>
+                                                                <button>Submit</button>
+                                                              </div>
+                                                            </form>
 																													 </div>
+
 
 																													 <script>
 
@@ -387,6 +388,7 @@
 																															 <?php } ?>
 
 																													 </script>
+
 																													 <?php
 																													 }
 
