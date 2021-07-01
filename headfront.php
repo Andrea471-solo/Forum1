@@ -36,7 +36,7 @@
   			text-decoration: none;
   			font-size: 20px;
 				margin: 8px 0;
-				border: 1px solid black;
+
 			}
 
 			/* Change the color of links on hover */
@@ -80,7 +80,7 @@
 				float: left;
 				width: 60%;
 				margin-top: 5px;
-				margin-left: 50px;
+				margin-left: 60px;
 
 
 			}
