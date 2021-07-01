@@ -14,11 +14,6 @@
 			a:hover {
 				color: red;
 			}
-      body {
-      font-family: 'Work Sans', sans-serif;
-      font-weight: 400;
-
-      }
 
       h1,h2{
 
@@ -114,7 +109,7 @@
 			border-right: 25px solid transparent;
 			border-bottom: 30px solid #ff4500;
 			}
-			button[type="submit"]{
+			.att.button[type="submit"]{
 
 			background-color: white;
 			border: none;
@@ -150,7 +145,7 @@
 			.grid-item{
 			width: 70px;
 			vertical-align: middle;
-
+		}
 			.shadow{
 				position: -webkit-sticky;
 				position: sticky;
@@ -368,7 +363,7 @@
 																															 </div>
 																															 <span id="war" class="war">Sorry, could not post a reply :(</span>
 																															 <br>
-																															 <button type="submit" name="post-submit">Attach image</button>
+																															 <button class="att" type="submit" name="post-submit">Attach image</button>
 																														 </form>
 																													 </div>
 

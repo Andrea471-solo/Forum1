@@ -20,11 +20,7 @@
 			  color: red;
 			}
 
-      body {
-      font-family: 'Work Sans', sans-serif;
-      font-weight: 400;
-
-      }
+    
       h1,h2{
 
           text-align: center;
